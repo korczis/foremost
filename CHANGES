@@ -1,0 +1,158 @@
+Version  1.5.7
+	-Added support for MP4 files
+Version  1.5.6
+	-Added support for Office 2007 file as well as bug fixes
+Version  1.5.5
+	-Added patch submitted by John K. Antonishek as well as cleaning 
+	up compiler warnings and man file installation.
+Version  1.5.4
+	-Added patch submitted by Milan Broz & Eamonn Saunders that 
+	 fixes jpeg extraction bug.
+warnings
+	and an 64 bit bug. 
+Version  1.5.3
+	-Added patches submitted by Toshio Kuratomi that fix compiler warnings
+	and an 64 bit bug. 
+Version  1.5.2
+	-Fixed problem with gap code thanks to Jeffry Turnmire
+Version  1.5.1 
+	-Fixed jpeg extraction bug thanks to Jeffry Turnmire
+	-Fixed bug in OLE extraction thanks to Filip Van Raemdonck
+Version  1.5
+	-Fixed Endian errors on OSX
+	-Fixed several bugs reported by John K. Antonishek
+Version  1.4
+	-Fixed realpath problems when compiling with cygwin
+	-Fixed flaw in Zip extraction
+	-Made indirect block detection a little more stable
+Version  1.3
+	- Fixed flaw in ZIP algorithm that didn't take into acct zeroized local file headers
+	  that contain valid compressed/uncompressed info in the data descriptors
+Version  1.2
+	- Fixed conf file typos
+Version  1.1
+	- Improved Speed of extraction functions
+	- Added NEXT option to config file
+	- Fixed some integer overflow problems
+	- Updated config file
+	- Added ASCII option for the config file
+Version  1.0 
+	- Changed display functionq
+	- Enhanced RaR and PE extraction
+	- Minor bug fixes thanks to Eamon Walsh for the bug report and patch
+	- Added support for Windows PE executables
+	- Added support for multiple files
+	- Thanks to Toshio Kuratomi for fixing some compiler warnings under gcc 4
+	- Fixed bugs with respect to unique file names, and quick mode
+Version  0.9.4
+	- Improved speed and reliability of zip and mpeg extraction algorithms.
+Version  0.9.3
+	-  Added subdirectories for each output type as opposed to 1 directory
+		containing 90,000 files.	
+Version  0.9.2
+	- Greatly improved OLE extraction capabilites.
+Version  0.9.1
+	- Re-wrote code to run on LINUX,OSX,BSD,and SOLARIS
+	- Added builtin extraction functions
+	- Changed default behavior to look for the conf file in /usr/local/etc as 
+	  well as the the current dir.  Also the conf file is not required
+	  for the program to run if the -t option is enabled.
+	- Added a -i switch to specify an input file as opposed to using stdin
+	- Added -k to allow the user to change the default chunk size as well 
+	  as -b to change the default block size
+	- Changed the output dir to a time stamp of when the program was run.
+	- Added -d for indirect block detection
+Version 0.69 (Our thanks to Zach Kanner for these improvements...)
+	- Corrected a bug that prevented the "reverse footer search" option
+	  from working correctly.
+	- Added a new "NEXT" option, specify NEXT after the footer on any
+          search specification line and foremost will search for 
+	  the last occurence (forward only currently) of that footer in the 
+          window of size length but not including that footer in the resulting 
+          output file created.  This feature lets you search for files that 
+          don't have good ending footers but are separated by multiple starting           footers or other identifiable data which you know should not be 
+          included in the output.  This works really well for MS Word documents           where you don't know where the end is.  The start of another document
+          becomes the end.  With this feature as you can specific the "NEXT" 
+	  or something after the end of the data we are looking for.
+	- Updated the default foremost.conf file to use the feature for .doc
+	  files.  Also added tags for ScanSoft PaperPort files (.max), and
+          a Windows program called PINs (.pins), which stores encrypted 
+	  passwords.
+Version 0.68
+Version 0.67
+	- Added "reverse footer search" option, specify REVERSE after the 
+	  footer on any search specification line and foremost will search for
+	  the last occurence of that footer in the window of size length.
+
+Version 0.66
+	- Changed normal search to Boyer-Moore algorithm. Much faster!
+ 	- Added progress meter
+	- Added ability to suppress extensions from a single file type or 
+	   from all file types.
+	- Added "chop" field to show when files have been trimmed
+           based on their definitions in the configuration file
+	- Added "interior" field to show when files have been found 
+           somewhere other than a sector boundary
+	- Added OpenBSD support
+	- Added Win32 support via native compilation (Mingw)
+        - Added Win32 support via Cygwin, to include:
+                 -using %lld instead of %Ld
+                 -ignoring the fnctl line for O_LARGEFILE in Win32
+                 -redeclare strsignal as const char strsignal
+                 -write function basename for Win32 using '\\' as delimiter
+                 -updated Makefile
+	- Removed unneccessary header files from foremost.h
+             
+(Version 0.65 was not published)
+
+Version 0.64 - Audit file now records full paths of input and output files
+               Foremost now requires that the output directory is empty
+                 before running. If necessary, foremost will create the
+	         output directory (ie. if it doesn't exist)
+               Added structure to internal code of foremost.c and created 
+                 dig.c file
+               Fixed bug that generated wrong line number in configuration
+                 file error messages
+	       Fixed bug on empty wildcard definitions
+	       Added limit for number of file types in configuration file
+
+Version 0.63 - Increased speed by using files already loaded in memory	
+	         instead of going back to the disk every time.
+	       Minor speed increase to helper functions
+               Added footers for several file formats including ZIP
+
+Version 0.62 - Added man page and make install functionality
+               Added "internal" indicator to show when a file is found
+                 off the start of the sector. 
+               Fixed discrepancy between audit file and screen output
+                regarding file numbers and offset locations (off by one)
+               Added more graceful error handling
+
+Version 0.61 - Added check for "^M" line feeds added by MSDOS editors
+                 while reading configuration files.
+
+Version 0.6 - Renamed project to "foremost"
+	      Added support for wildcards
+              Added -q for quick mode
+              More code clean up
+              Removed BSD porting code (oops) and added support
+               for large (>2GB) files.
+
+Version 0.5 - Added -v for verbose mode
+              Added more intelligble output regarding file locations
+	      Added error handling procedures
+	      Added support for loading specification files from the disk
+
+Version 0.4 - More code cleanup
+	      (not actually released, used as test during investigation)
+
+Version 0.3 - Code cleanup continues, moved all variables into the 
+              state variable. The program still needs a LOT of work.
+
+Version 0.2 - Code cleanup by Jesse Kornblum. Removed linux specific
+              code and ported to OpenBSD. Added support for handling
+              multiple images from the command line and created the
+              state variable. 07 March 2001
+
+Version 0.1 - Proof of concept code written by Kris Kendall,
+              originally called "snarfit" 05 March 2001
