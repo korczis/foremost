@@ -53,7 +53,7 @@ int make_new_directory(f_state *s, char *fn)
 #ifdef __WIN32
 
 	#ifndef __CYGWIN
-fprint(stderr,"Calling mkdir with\n");	
+fprintf(stderr,"Calling mkdir with\n");	
 	if (mkdir(fn))
 	#endif
 
@@ -349,7 +349,7 @@ int write_to_disk(f_state *s, s_spec *needle, u_int64_t len, unsigned char *buf,
 			 block,
 			 needle->suffix);
 
-	test = fopen(fn, "r");
+	test = fopen(fn, "rb");
 	while (test)	/*Test the files to make sure we have unique file names, some headers could be within the same block*/
 		{
 		memset(fn, 0, MAX_STRING_LENGTH - 1);
@@ -364,10 +364,10 @@ int write_to_disk(f_state *s, s_spec *needle, u_int64_t len, unsigned char *buf,
 				 needle->suffix);
 		i++;
 		fclose(test);
-		test = fopen(fn, "r");
+		test = fopen(fn, "rb");
 		}
 
-	if (!(f = fopen(fn, "w")))
+	if (!(f = fopen(fn, "wb")))
 		{
 		printf("fn = %s  failed\n", fn);
 		fatal_error(s, "Can't open file for writing \n");
