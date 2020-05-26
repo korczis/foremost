@@ -197,7 +197,7 @@ void audit_msg(f_state *s, char *format, ...)
 	va_end(argp);
 
 	fprintf(s->audit_file, "%s", NEWLINE);
-	fflush(stdout);
+	fflush(s->audit_file);
 }
 
 void set_input_file(f_state *s, char *filename)
