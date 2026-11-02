@@ -888,6 +888,8 @@ unsigned char *extract_ole(f_state *s, u_int64_t c_offset, unsigned char *founda
 		{
 		memset(buffer, ' ', 75);
 		j = htoi((unsigned char *) &dl->level, FOREMOST_LITTLE_ENDIAN) * 4;
+		if (j >= OUR_BLK_SIZE - 64)
+			j = 0;
 		sprintf((char *) &buffer[j], "%-s", dl->name);
 		j = strlen((char *)buffer);
 
